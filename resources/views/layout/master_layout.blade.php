@@ -373,7 +373,7 @@
                     },
                     success: function(response) {
                         $('#editQuestionModal').modal('hide');
-                        location.reload(); // Refresh table to show updates
+                        location.reload();
                     },
                     error: function(xhr) {
                         alert("Something went wrong!");
