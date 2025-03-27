@@ -37,7 +37,7 @@
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            color: #888; /* Default eye color */
+            color: #888888; /* Default eye color */
         }
 
         .password-container i:hover {
