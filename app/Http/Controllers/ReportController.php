@@ -29,9 +29,8 @@ class ReportController extends Controller
 
         $reportformtitle = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
                         ->where('form_survey.title_id', $id)
+                        ->select('form_survey.*', 'training_title.*', 'form_survey.id as fsid')
                         ->get();
-        
-        // $reportformtitle = DefaultQuestion::get();
                         
         $getTitleID =TrainingQuestion::where('title_id', $id)->get();
 
@@ -43,17 +42,6 @@ class ReportController extends Controller
         $getRate = FormSurvey::where('title_id', $id)->get();
         $getQuestion = TrainingQuestion::where('title_id', $id)->get();
         
-        // $pdfreportformtitle = TrainingTitle::join('training_question', 'training_title.id', '=', 'training_question.title_id')
-        //             ->leftJoin('form_survey', 'training_title.id', '=', 'form_survey.title_id')
-        //             ->where('training_title.id', $id)
-        //             ->select('training_title.*', 'training_question.*', 'training_question.id as tid',  'form_survey.*')
-        //             ->get();
-
-        // $pdfreportformtitle = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
-        //                 ->join('training_question', 'training_title.id', '=', 'training_question.title_id')
-        //                 ->where('form_survey.title_id', $id)
-        //                 ->select('training_title.*', 'training_question.*', 'training_question.id as tid',  'form_survey.*')
-        //                 ->get();
         $pdfreportformtitlequestion = FormSurvey::join('training_question', 'form_survey.title_id', '=', 'training_question.title_id')
                         ->where('form_survey.title_id', $id)
                         ->select('training_question.*', 'training_question.id as tid',  'form_survey.*')
@@ -83,14 +71,14 @@ class ReportController extends Controller
 
     public function PDFSurveyRatedTemplate($id) 
     {
-        $trainingID = TrainingTitle::find($id);
+        $trainingID = FormSurvey::find($id);
 
         $surveyRatings = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
-                        ->where('form_survey.title_id', $id) // Ensure data matches the selected entry
+                        ->where('form_survey.id', $id)
                         ->get();
 
         $formtitle = TrainingTitle::join('training_question', 'training_title.id', '=', 'training_question.title_id')
-                    ->where('training_title.id', $id)
+                    ->where('training_title.id', $surveyRatings->first()->title_id)
                     ->select('training_title.*', 'training_question.*')
                     ->get();
 
