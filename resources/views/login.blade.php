@@ -104,7 +104,6 @@
         const passwordInput = document.getElementById('studentPassInput');
     
         togglePassword.addEventListener('click', function () {
-            // Toggle password visibility
             const type = passwordInput.type === 'password' ? 'text' : 'password';
             passwordInput.type = type;
     
