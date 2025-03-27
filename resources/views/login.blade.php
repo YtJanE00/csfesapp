@@ -59,7 +59,7 @@
                 <div class="form-content">
                     <div class="form-items">
                         <div class="form-icon">
-                            <img src="{{ asset('style/img/cpsulogov4.png') }}" alt="" width="35%">
+                            <img src="{{ asset('style/img/cpsulogov4.png') }}" alt="Logo" width="35%">
                         </div>
                         <h3 class="form-title-center">CSFES<br>
                             <small style="font-size: 10pt;">Sign in to start session</small>
