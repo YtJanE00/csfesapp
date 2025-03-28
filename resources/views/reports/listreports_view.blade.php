@@ -69,10 +69,21 @@
                                                         <td>{{ $datareportformtitle->feedback2 }}</td>
                                                         <td>
                                                             <button type="button" class="btn btn-outline-success btn-sm view-pdf" 
-                                                                data-url="{{ route('PDFSurveyRatedTemplate', ['id' => $datareportformtitle->id]) }}" 
-                                                                data-title="{{ $datareportformtitle->title }}">
+                                                                data-url="{{ route('PDFSurveyRatedTemplate', ['id' => $datareportformtitle->fsid]) }}" 
+                                                                data-title="{{ $datareportformtitle->title }}"
+                                                                data-name="{{ $datareportformtitle->name }}">
                                                                 <i class="fas fa-eye"></i>
                                                             </button>
+                                                            {{-- <a href="{{ route('PDFSurveyRatedTemplate', ['id' => $datareportformtitle->fsid]) }}" target="_blank">
+                                                                <i class="fas fa-eye"></i> {{ $datareportformtitle->fsid }}
+                                                            </a> --}}
+
+                                                            {{-- <button type="button" class="btn btn-outline-success btn-sm view-pdf" 
+                                                                data-url="{{ route('PDFSurveyRatedTemplate', ['id' => $datareportformtitle->id]) }}" 
+                                                                data-title="{{ $datareportformtitle->title }}"
+                                                                data-name="{{ $datareportformtitle->name }}">
+                                                                <i class="fas fa-eye"></i>
+                                                            </button> --}}
                                                         </td>
                                                         
                                                     </tr>
@@ -105,7 +116,10 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel">PDF Viewer</h5>
+                <h5 class="modal-title">
+                    <span id="pdfModalLabel"></span> -
+                    <span id="pdfModalName"></span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -118,16 +132,30 @@
 </div>
 
 <script>
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     $('.view-pdf').on('click', function() {
+    //         var pdfUrl = $(this).data('url');
+    //         var title = $(this).data('title');
+            
+    //         $('#pdfModalLabel').text(pdfUrl);
+    //         $('#pdfFrame').attr('src', pdfUrl);
+    //         $('#pdfModal').modal('show');
+    //     });
+    // });
+
     document.addEventListener("DOMContentLoaded", function() {
         $('.view-pdf').on('click', function() {
-            var pdfUrl = $(this).data('url');
+            var pdfUrl = $(this).data('url');  // Corrected
             var title = $(this).data('title');
-            
-            $('#pdfModalLabel').text(pdfUrl);
-            $('#pdfFrame').attr('src', pdfUrl);
+            var name = $(this).data('name');
+
+            $('#pdfModalLabel').text(title);  // Show title in modal header
+            $('#pdfModalName').text(name);
+            $('#pdfFrame').attr('src', pdfUrl);  // Correct iframe source
             $('#pdfModal').modal('show');
         });
     });
+
 
 </script>
 

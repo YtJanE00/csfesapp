@@ -23,10 +23,21 @@
 		.styled-table th {
 		    background-color: #f2f2f2;
 		}
-
+		.details {			
+			margin-left: 0px;
+			font-size: 11pt;
+		}
 	</style>
 </head>
 <body>
+	@php
+		$evaltitle = $surveyRatings->first()->title;
+		$evalname = $surveyRatings->first()->name;
+		$evaloffice = $surveyRatings->first()->office;
+		$evalspeaker = $surveyRatings->first()->speaker;
+		
+		@endphp
+
 	<div align="center" style="margin-top: -20px !important;">
 		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="99%">
 	</div>
@@ -35,22 +46,42 @@
 		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
 			To help us improve our future trainings and activities, please spare us a moment to answer this survey.
 		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Training/Workshop Title: <u>{{ $surveyRatings->first()->title }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Office handling the training: <u>{{ $surveyRatings->first()->office }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-			Speaker/s: <u>{{ $surveyRatings->first()->speaker }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-    	Date: <u>{{ $surveyRatings->first()->training_month }} {{ $surveyRatings->first()->training_day }}, {{ $surveyRatings->first()->training_year }}</u>
-		</p>
+		
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 150px; vertical-align: top;">Training/Workshop Title:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold; margin-left: 3px">{{ $evaltitle }}</span>
+			</div>
+		</div>
 
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-			Venue: <u>{{ $surveyRatings->first()->training_venue }}</u>
-		</p>
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 160px; vertical-align: top;">Office handling the training:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold; margin-left: 3px">{{ $evaloffice }}</span>
+			</div>
+		</div>
+
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 70px; vertical-align: top;">Speaker/s:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold; margin-left: 3px">{{ $evalspeaker }}</span>
+			</div>
+		</div>
+
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 50px; vertical-align: top;">Date:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold; margin-left: 3px">{{ $surveyRatings->first()->training_month }} {{ $surveyRatings->first()->training_day }}, {{ $surveyRatings->first()->training_year }}</span>
+			</div>
+		</div>
+
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px; margin-bottom: 20px">
+			<span style="display: inline-block; width: 50px; vertical-align: top;">Venue:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold; margin-left: 3px">{{ $surveyRatings->first()->training_venue }}</span>
+			</div>
+		</div>
+
 		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px; font-weight: bold;">
 			Please evaluate the following items by encircling the rating values following the legend below:
 		</p>
@@ -117,12 +148,20 @@ Please identify if there is any: ___
 		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 5px; font-weight: bold;">
 			Contact Information: </p>
 
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Name: <u>{{ $surveyRatings->first()->name }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Office: <u>{{ $surveyRatings->first()->office }}</u>
-		</p>
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
+			<span style="display: inline-block; width: 75px; vertical-align: top;">Name:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: center; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold">{{ $evalname }}</span>
+			</div>
+		</div>
+
+		<div class="" style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 75px; vertical-align: top;">Office:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: center; border-bottom: 1px solid black; width: 205px;">
+				<span style="font-weight: bold">{{ $evaloffice }}</span>
+			</div>
+		</div>
+
 		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
 			Contact Information (Landline/CP/Email Address):
 		</p>
