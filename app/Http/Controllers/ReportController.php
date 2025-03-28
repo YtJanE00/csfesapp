@@ -37,7 +37,8 @@ class ReportController extends Controller
         return view('reports.listreports_view', compact('reportformtitleID', 'reportformtitle', 'getTitleID'));
     }
 
-    public function PDFreportViewSurveyresult($id) {
+    public function PDFreportViewSurveyresult($id) 
+    {
         $pdfreportformtitleID = TrainingTitle::find($id);
         $getRate = FormSurvey::where('title_id', $id)->get();
         $getQuestion = TrainingQuestion::where('title_id', $id)->get();
