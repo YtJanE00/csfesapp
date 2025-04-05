@@ -171,7 +171,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label>Office</label>
-                                        <input type="text" name="office" class="form-control required-input" placeholder="Office" required oninput="this.value = this.value.replace(/[^A-Za-z\s,\.]/g, '')">
+                                        <input type="text" name="office" class="form-control required-input" placeholder="Office" required>
                                     </div>
                                 </div>
 

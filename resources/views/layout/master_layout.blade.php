@@ -108,6 +108,7 @@
             padding: 0 10px;
             margin-top: .31rem;
         }
+
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
@@ -132,7 +133,10 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-light-primary" style= "background-color:#ffffff !important">
+        <aside class="main-sidebar main-sidebar-custom sidebar-light-primary" style= "background-color:#ffffff !important">
+            <a href="" class="brand-link text-center" style="background-color: #1f5036;">
+                <span class="brand-text font-weight-bold text-light">Customer Satisfaction Feedback</span>
+            </a>
              <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
@@ -142,12 +146,17 @@
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
+            <div class="sidebar-custom border-top-0">
+                <button type="button" class="btn btn-outline-success btn-block hide-on-collapse pos-center" data-toggle="modal" data-target="#modal-aboutus">
+                    About Us
+                </button>
+            </div>
         </aside>
         <!-- Content Wrapper. Contains page content -->
         @yield('body')
         
         <!-- /.content-wrapper -->
-
+        @include('modals.modal-aboutus')
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
