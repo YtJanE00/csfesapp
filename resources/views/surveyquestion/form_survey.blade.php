@@ -163,7 +163,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label>Name</label>
-                                        <input type="text" name="name" class="form-control required-input" placeholder="Name" required oninput="this.value = this.value.replace(/[^A-Za-z\s,\.]/g, '')">
+                                        <input type="text" name="name" class="form-control required-input" placeholder="Name" required oninput="this.value = this.value.replace(/[^A-Za-zñÑ\s,\.\-]/g, '')">
                                     </div>
                                 </div>
 
@@ -179,7 +179,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label>Contact Information</label>
-                                        <input type="number" name="contact_information" class="form-control required-input" placeholder="Contact" required pattern="^\d{11}$" maxlength="11" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 11)">
+                                        <input type="text" name="contact_information" class="form-control required-input" placeholder="Contact" required>
                                     </div>
                                 </div>
 
@@ -187,7 +187,7 @@
                                     <input type="hidden" name="question[]" value="{{ $dataformlinksquestions->id }}">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title"> {{ $loop->iteration }}.) {{ $dataformlinksquestions->question }}</h5>
+                                            <h5 class="card-title"> {{ $loop->iteration }}. {{ $dataformlinksquestions->question }}</h5>
                                             <p class="card-text mt-5">
                                             </p>
                                             {{-- <a href="#" class="card-link text-dark"><input type="radio" name="question_rate[{{ $dataformlinksquestions->id }}]" value="1"> <b>1</b></a>

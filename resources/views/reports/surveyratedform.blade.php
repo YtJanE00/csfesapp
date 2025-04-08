@@ -8,7 +8,7 @@
 	<style>
 		.details-sm{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 11pt;
+			font-size: 10pt;
 		}
 		.styled-table {
 			padding-left: 50px;
@@ -21,7 +21,7 @@
 		.styled-table th,
 		.styled-table td {
 		    border: 1px solid black;
-		    padding: 8px;
+		    padding: 5px;
 		    text-align: left;
 		}
 
@@ -75,6 +75,13 @@
 			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
 			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 495px; margin-left: -20px">
 				<span>{{ $evaltitle }}</span>
+			</div>
+		</div>
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 200px; vertical-align: top; padding-left: 50px;">Office handling the training:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 410px; margin-left: -20px">
+				<span>{{ $evaloffice }}</span>
 			</div>
 		</div>
 
@@ -184,7 +191,6 @@
 		        @endfor
 		    </div>
 		</p>
-		<br>
 		<br>
 		<p class="details-sm" style="padding-left: 50px !important; margin-top: 5px; font-weight: bold;">
 			Contact Information: </p>

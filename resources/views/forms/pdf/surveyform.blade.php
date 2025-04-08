@@ -8,7 +8,7 @@
 	<style>
 		.details-sm{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 11pt;
+			font-size: 10pt;
 		}
 		.styled-table {
 			padding-left: 50px;
@@ -21,7 +21,7 @@
 		.styled-table th,
 		.styled-table td {
 		    border: 1px solid black;
-		    padding: 8px;
+		    padding: 5px;
 		    text-align: left;
 		}
 
@@ -42,28 +42,36 @@
 		</p>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
-			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 495px; margin-left: -20px">
+			<span style="display: inline-block; width: 170px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 490px; margin-left: -20px">
 				<span>{{ $formtitleID->title }}</span>
 			</div>
 		</div>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 100px; vertical-align: top; padding-left: 50px;">Speaker/s :</span>
-			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 480px; margin-left: -20px">
+			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Office handling the training:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 470px; margin-left: -20px">
+				<span>{{ $formtitleID->office }}</span>
+			</div>
+		</div>
+
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 90px; vertical-align: top; padding-left: 50px;">Speaker/s :</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 470px; margin-left: -20px">
 				<span>{{ $formtitleID->speaker }}</span>
 			</div>
 		</div>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 60px; vertical-align: top; padding-left: 50px;">Date:</span>
-			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 520px; margin-left: -20px">
+			<span style="display: inline-block; width: 50px; vertical-align: top; padding-left: 50px;">Date:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 510px; margin-left: -20px">
 				<span>{{ $formtitleID->training_month }} {{ $formtitleID->training_day }}, {{ $formtitleID->training_year }}</span>
 			</div>
 		</div>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 70px; vertical-align: top; padding-left: 50px;">Venue: </span>
+			<span style="display: inline-block; width: 60px; vertical-align: top; padding-left: 50px;">Venue: </span>
 			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 510px; margin-left: -20px">
 				<span>{{ $formtitleID->training_venue }}</span>
 			</div>
@@ -76,7 +84,7 @@
 			(1)&nbsp;&nbsp;Poor &nbsp;&nbsp;&nbsp;&nbsp;
             (2)&nbsp;&nbsp;Unsatisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             (3)&nbsp;&nbsp;Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            (4)&nbsp;&nbsp;Very Satisfactory &nbsp;&nbsp;
+            (4)&nbsp;&nbsp;Very Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;
             (5)&nbsp;&nbsp;Outstanding
 		</p>
 	</div>
@@ -121,7 +129,6 @@
 			________________________________________________________________________________
 			____________________________________________________________________________
 		</p>
-		<br>
 		<br>
 		<p class="details-sm" style="padding-left: 50px !important; margin-top: 5px; font-weight: bold;">
 			Contact Information: </p>
