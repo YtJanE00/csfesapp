@@ -214,7 +214,7 @@
 		</div>
 
 		<div class="details-sm" style="margin-left: 50px !important; margin-top: 2px">
-			<span style="display: inline-block; width: 330px; vertical-align: top; margin-left: 50px !important;">Contact Information (Landline/Cp/Email Address):</span>
+			<span style="display: inline-block; width: 300px; vertical-align: top; margin-left: 50px !important;">Contact Information (Landline/Cp/Email Address):</span>
 			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 280px;">
 				<span>{{ $evalcontact }}</span>
 			</div>

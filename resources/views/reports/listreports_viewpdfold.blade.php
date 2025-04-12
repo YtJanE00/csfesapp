@@ -6,10 +6,6 @@
     <title>Survey Report</title>
 
     <style>
-        body {
-            font-size: 10pt !important;
-            font-family: Arial, Helvetica, sans-serif;
-        }
         .styled-table {
             margin-top: 2rem;
             border-collapse: collapse;
@@ -63,7 +59,7 @@
 </head>
 <body>
     <div align="center" style="margin-top: -20px !important;">
-        <img src="{{ public_path('style/img/resultheader.png') }}" width="100%" height="140px">
+        <img src="{{ public_path('style/img/resultheader.png') }}" width="100%" height="90px">
     </div>
 
     <div class="parent-div">
@@ -154,103 +150,87 @@
                     @php $row++; @endphp
                 @endforeach
 
-                @php
-                    // Compute final mean
-                    $finalMean = ($totalRowCount > 0) ? $sumOfRowMeans / $totalRowCount : 0;
-
-                    // Determine the interpretation
-                    if ($finalMean >= 4.21) {
-                        $interpretation = "Outstanding";
-                    } elseif ($finalMean >= 3.41) {
-                        $interpretation = "Very Satisfactory";
-                    } elseif ($finalMean >= 2.51) {
-                        $interpretation = "Satisfactory";
-                    } elseif ($finalMean >= 1.81) {
-                        $interpretation = "Poor";
-                    } else {
-                        $interpretation = "Needs Improvement";
-                    }
-
-                @endphp
-
                <!-- Total Row -->
                 <tr class="total" style="background-color: green;">
-                    <td style="background-color: green;"><strong></strong></td>
+                    <td style="background-color: white;"><strong></strong></td>
                     @foreach ($columnTotals as $total)
                         <td><strong>{{ $total }}</strong></td>
                     @endforeach
-                    <td style="background-color: green;"><strong>{{ number_format($grandTotal) }}</strong></td>
+                    <td style="background-color: green;"><strong></strong></td>
 
                     <!-- Corrected: Display sum of right-side means -->
                     <td class="mean" style="background-color: green;">
-                        <strong>{{ number_format($grandTotal / $totalRowCount, 2) }}</strong>
+                        <strong>{{ number_format($sumOfRowMeans, 1) }}</strong>
                     </td>
                 </tr>
 
 
                 <!-- Column Mean Row -->
                 <tr class="mean">
-                    <td style="background-color: yellow;"><strong></strong></td>
+                    <td style="background-color: white;"><strong></strong></td>
                     @php
                         $sumOfColumnMeans = 0;
                         foreach ($columnTotals as $index => $total) {
                             $mean = $columnCounts[$index] > 0 ? $total / $columnCounts[$index] : 0;
                             $sumOfColumnMeans += $mean;
                     @endphp
-                        <td style="background-color: yellow"><strong></strong></td>
+                        <td style="background-color: yellow"><strong>{{ number_format($mean, 1) }}</strong></td>
                     @php } @endphp
 
                     <td class="mean" style="background-color: yellow;"><strong></strong></td>
-                    <td class="mean" style="background-color: yellow"><strong>{{ $interpretation }}</strong></td>
+                    <td class="mean" style="background-color: yellow"><strong>{{ number_format($sumOfRowMeans / $totalRowCount, 1) }}</strong></td>
                 </tr>
                   <!-- Rating Interpretation Row -->
                 <tr>
-                    <th colspan="3" style="background-color: white;">Rating Range</th>
-                    <th colspan="4" style="background-color: white;">Interpretation</th>
-                    <th colspan="3" style="background-color: white;">Frequency</th>
-                    <th colspan="3" style="background-color: white;">Percentage</th>
+                    <th colspan="7" style="background-color: white;">Rating Range</th>
+                    <th colspan="{{ count($columnTotals) + 2 }}" style="background-color: white;">Interpretation</th>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">4.21 - 5.00</td>
-                    <td style="padding: 1px" colspan="4">Outstanding</td>
-                    <td style="padding: 1px" colspan="3">{{ $totalRowCount }}</td>
-                    <td style="padding: 1px" colspan="3">100%</td>
+                    <td colspan="7">4.21 - 5.00</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Outstanding</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">3.41 - 4.20</td>
-                    <td style="padding: 1px" colspan="4">Very Satisfactory</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">3.41 - 4.20</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Very Satisfactory</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">2.61 - 3.40</td>
-                    <td style="padding: 1px" colspan="4">Satisfactory</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">2.61 - 3.40</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Satisfactory</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">1.81 - 2.60</td>
-                    <td style="padding: 1px" colspan="4">Poor</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">1.81 - 2.60</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Poor</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">1.00 - 1.80</td>
-                    <td style="padding: 1px" colspan="4">Needs Improvement</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px" colspan="3"><b>Total</b></td>
-                    <td style="padding: 1px" colspan="4"></td>
-                    <td style="padding: 1px" colspan="3"><b>{{ $totalRowCount }}</b></td>
-                    <td style="padding: 1px" colspan="3"><b>100%</b></td>
+                    <td colspan="7">1.00 - 1.80</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Needs Improvement</td>
                 </tr>
             </tbody>
         </table>
 
         <br><br>
     </div>
+
+    @php
+        // Compute final mean
+        $finalMean = ($totalRowCount > 0) ? $sumOfRowMeans / $totalRowCount : 0;
+
+        // Determine the interpretation
+        if ($finalMean >= 4.21) {
+            $interpretation = "Outstanding";
+        } elseif ($finalMean >= 3.41) {
+            $interpretation = "Very Satisfactory";
+        } elseif ($finalMean >= 2.51) {
+            $interpretation = "Satisfactory";
+        } elseif ($finalMean >= 1.81) {
+            $interpretation = "Poor";
+        } else {
+            $interpretation = "Needs Improvement";
+        }
+    @endphp
+
+    <p style="color: black;"><strong>Mean = </strong> {{ number_format($finalMean, 2) }} ,  {{ $interpretation }}</p>
+  
 
 </body>
 </html>
