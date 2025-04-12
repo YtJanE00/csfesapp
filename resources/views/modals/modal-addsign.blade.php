@@ -1,13 +1,13 @@
-<div class="modal fade" id="modal-adduser">
+<div class="modal fade" id="modal-addsign">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add User</h4>
+                <h4 class="modal-title">Add Signatories</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action= "{{ route('userCreate') }}" method="post">
+            <form action= "{{ route('signCreate') }}" method="post">
                 @csrf
 
                 <div class="modal-body">
@@ -30,20 +30,12 @@
 
                     <div class="form-group">
                         <div class='form-row'>
-                            <div class="col-md-4">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control form-control-sm">
-                            </div>
-                            <div class="col-md-4">
-                                <label>Password</label>
-                                <input type="text" name="password" class="form-control form-control-sm">
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <label>Role</label>
                                 <select class="form-control form-control-sm" name="role">
                                     <option disabled selected>--Select--</option>
-                                    <option value="Administrator">Administrator</option>
-                                    <option value="User">User</option>
+                                    <option value="Dean">Dean</option>
+                                    <option value="Director, Extension and Community Services">Director, Extension and Community Services</option>
                                 </select>
                             </div>
                         </div>
@@ -51,7 +43,7 @@
 
                     <div class="form-group">
                         <div class='form-row'>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <label>Offices</label>
                                 <select class="form-control form-control-sm" name="deptName" id="office-select" onchange="updateOfficeId()">
                                     @if(Auth::user()->role == 'Administrator')
@@ -77,6 +69,10 @@
                                     officeNameInput.value = selectedOption.getAttribute('data-name');
                                 }
                             </script>
+                            <div class="col-md-4">
+                                <label for="rank">Rank</label>
+                                <input type="text" class="form-control form-control-sm" name="rank">
+                            </div>
                             <div class="col-md-4">
                                 <label>Campus</label>
                                 <select class="form-control form-control-sm" name="campus">

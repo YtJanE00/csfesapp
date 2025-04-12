@@ -5,6 +5,7 @@
     $questActive = in_array($curr_route, ['defquestionStore']) ? 'active' : '';
     $formActive = in_array($curr_route, ['formRead', 'formQuestion']) ? 'active' : '';
     $reportActive = in_array($curr_route, ['reportRead', 'reportViewSurvey']) ? 'active' : '';
+    $signActive = in_array($curr_route, ['signRead']) ? 'active' : '';
     $userActive = in_array($curr_route, ['userRead']) ? 'active' : '';
 @endphp
 
@@ -16,7 +17,7 @@
         <a href="#" class="d-block">
             @auth('web')
                 @if(in_array(Auth::guard('web')->user()->role, ['Administrator', 'User']))
-                    {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->lname }}
+                    {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->mname }}. {{ Auth::guard('web')->user()->lname }}
                 @endif
             @endauth
         </a>
@@ -60,6 +61,14 @@
     </li>
 
     @if(Auth::guard('web')->user()->role == 'Administrator')
+        <li class="nav-item">
+            <a href="{{ route('signRead') }}" class="nav-link {{ $signActive }}">
+                <i class="nav-icon fas fa-pen"></i>
+                <p>
+                    Signatories
+                </p>
+            </a>
+        </li>
         <li class="nav-item">
             <a href="{{ route('userRead') }}" class="nav-link {{ $userActive }}">
                 <i class="nav-icon fas fa-user-gear"></i>

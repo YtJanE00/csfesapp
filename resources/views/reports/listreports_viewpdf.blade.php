@@ -252,5 +252,62 @@
         <br><br>
     </div>
 
+    <div>
+        @php
+            $coordinator = Auth::guard('web')->user()->fname . ' ' . Auth::guard('web')->user()->mname.'.' .' '.  Auth::guard('web')->user()->lname;
+
+            $dean = $coordinatordean->first()->sfname .' '. $coordinatordean->first()->smname .'.' .' '. $coordinatordean->first()->slname.',' .' '. $coordinatordean->first()->srank;
+
+            $deanpos = $coordinatordean->first()->srole;
+            $deandept = $coordinatordean->first()->sdept;
+            $deandeptFormatted = ucwords(strtolower($deandept), " \t\r\n\f\v");
+            $deandeptFormatted = preg_replace('/\bOf\b/i', 'of', $deandeptFormatted);
+
+            $sigdirector = $director->first()->dfname .' '. $director->first()->dmname .'.' .' '. $director->first()->dlname;
+            $sigdirectorrank = $director->first()->drank;
+            $sigdirectorrole = $director->first()->drole;
+        @endphp
+        
+        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
+			Prepared by: </p>
+
+		<div class="details-sm" style="margin-left: 50px !important;">
+            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold; text-transform: uppercase">
+                {{ strtoupper($coordinator) }}
+            </span><br>
+            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important;">
+                {{ $coordinatorposition }}, Extension Coordinator
+            </span>
+		</div>
+
+        <br>
+
+        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
+			Noted by: </p>
+
+		<div class="details-sm" style="margin-left: 50px !important;">
+            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold; text-transform: uppercase">
+                {{ strtoupper($dean) }}
+            </span><br>
+            <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
+                {{ strtoupper($deanpos) }}, {{ $deandeptFormatted  }}
+            </span>
+		</div>
+
+        <br>
+
+        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
+			Approved by: </p>
+
+		<div class="details-sm" style="margin-left: 50px !important;">
+            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold;">
+                {{ strtoupper($sigdirector) }}, {{ $sigdirectorrank }}
+            </span><br>
+            <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
+                {{ $sigdirectorrole }}
+            </span>
+		</div>
+    </div>
+
 </body>
 </html>

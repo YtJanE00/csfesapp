@@ -15,6 +15,9 @@ use App\Models\TrainingTitle;
 use App\Models\TrainingQuestion;
 use App\Models\FormSurvey;
 use App\Models\DefaultQuestion;
+use App\Models\Signatories;
+use App\Models\Offices;
+use App\Models\User;
 
 class ReportController extends Controller
 {
@@ -58,6 +61,19 @@ class ReportController extends Controller
         $reportformtitle = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
                         ->where('form_survey.title_id', $id)
                         ->get();
+        
+        $coordinatorposition = User::join('offices', 'users.deptID', '=', 'offices.id')
+                    ->where('users.id', Auth::guard('web')->user()->id)
+                    ->value('office_abbr');
+
+        $coordinatordean = Signatories::leftJoin('users', 'signatories.deptID', '=', 'users.deptID')
+                ->where('users.id', Auth::guard('web')->user()->id)
+                ->select('users.*', 'signatories.role', 'signatories.dept as sdept', 'signatories.fname as sfname', 'signatories.mname as smname', 'signatories.lname as slname', 'signatories.role as srole', 'signatories.rank as srank')
+                ->get();
+
+        $director = Signatories::where('role', '=', 'Director, Extension and Community Services')
+                ->select('signatories.fname as dfname', 'signatories.mname as dmname', 'signatories.lname as dlname', 'signatories.rank as drank', 'signatories.role as drole')
+                ->get();
 
         $data=[
             'pdfreportformtitleID' => $pdfreportformtitleID,
@@ -66,6 +82,9 @@ class ReportController extends Controller
             'reportformtitle' => $reportformtitle, 
             'getRate' => $getRate, 
             'getQuestion' => $getQuestion, 
+            'coordinatorposition' => $coordinatorposition,
+            'coordinatordean' => $coordinatordean,
+            'director' => $director
         ];
 
         $pdf = PDF::loadView('reports.listreports_viewpdf', $data)->setPaper('Legal', 'portrait');

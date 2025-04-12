@@ -41,6 +41,7 @@ class UserController extends Controller
                     'password' => Hash::make($request->input('password')), 
                     'role' => $request->input('role'),
                     'dept' => $request->input('dept'),
+                    'deptID' => $request->input('deptID'),
                     'campus' => $request->input('campus'),
                     'remember_token' => Str::random(60),             
                 ]);      
