@@ -6,6 +6,9 @@
 	<title></title>
 
 	<style>
+		body {
+			font-size: 10pt !important;
+		}
 		.details-sm{
 			font-family: Arial, Helvetica, sans-serif;
 			font-size: 10pt;
@@ -21,7 +24,7 @@
 		.styled-table th,
 		.styled-table td {
 		    border: 1px solid black;
-		    padding: 5px;
+		    padding: 1px;
 		    text-align: left;
 		}
 
@@ -58,12 +61,13 @@
 			$evaltitle = $surveyRatings->first()->title;
 			$evalname = $surveyRatings->first()->name;
 			$evaloffice = $surveyRatings->first()->office;
+			$evalratedoffice = $surveyRatings->first()->fsoff;
 			$evalspeaker = $surveyRatings->first()->speaker;
 			$evalcontact = $surveyRatings->first()->contact_information;
 		@endphp
 
 	<div align="center" style="margin-top: -20px !important;">
-		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="99%">
+		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="85%">
 	</div>
 
 	<div>
@@ -72,21 +76,21 @@
 		</p>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
+			<span style="display: inline-block; width: 170px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
 			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 495px; margin-left: -20px">
 				<span>{{ $evaltitle }}</span>
 			</div>
 		</div>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 200px; vertical-align: top; padding-left: 50px;">Office handling the training:</span>
+			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Office handling the training:</span>
 			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 410px; margin-left: -20px">
 				<span>{{ $evaloffice }}</span>
 			</div>
 		</div>
 
 		<div class="details-sm" style="margin-top: 5px;">
-			<span style="display: inline-block; width: 100px; vertical-align: top; padding-left: 50px;">Speaker/s :</span>
+			<span style="display: inline-block; width: 90px; vertical-align: top; padding-left: 50px;">Speaker/s :</span>
 			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 480px; margin-left: -20px">
 				<span>{{ $evalspeaker }}</span>
 			</div>
@@ -148,7 +152,7 @@
 							@for ($i = 1; $i <= 5; $i++)
 								{{-- <span style="font-size: 16px;">{{ $i }}</span> --}}
 								@if ($savedRating == $i)
-									<img src="{{ public_path('style/img/rate/' . $i . '.png') }}" alt="{{ $i }}" width="20">
+									<img src="{{ public_path('style/img/rate/' . $i . '.png') }}" alt="{{ $i }}" width="15">
 								@else
 									{{ $i }}
 								@endif
@@ -205,7 +209,7 @@
 		<div class="details-sm" style="margin-left: 50px !important; margin-top: 2px">
 			<span style="display: inline-block; width: 50px; vertical-align: top; margin-left: 50px !important;">Office:</span>
 			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 560px;">
-				<span>{{ $evaloffice }}</span>
+				<span>{{ $evalratedoffice }}</span>
 			</div>
 		</div>
 
@@ -221,7 +225,7 @@
 		</div>
  	</div>
  	<div style="position: fixed; bottom: -30px; left: 0; width: 100%; text-align: center; margin-bottom: 5px;">
-		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="80%">
+		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="75%">
 	</div>
 </body>
 </html>

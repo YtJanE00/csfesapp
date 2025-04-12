@@ -151,18 +151,18 @@
                 @endforeach
 
                <!-- Total Row -->
-<tr class="total" style="background-color: green;">
-    <td style="background-color: white;"><strong></strong></td>
-    @foreach ($columnTotals as $total)
-        <td><strong>{{ $total }}</strong></td>
-    @endforeach
-    <td style="background-color: green;"><strong></strong></td>
+                <tr class="total" style="background-color: green;">
+                    <td style="background-color: white;"><strong></strong></td>
+                    @foreach ($columnTotals as $total)
+                        <td><strong>{{ $total }}</strong></td>
+                    @endforeach
+                    <td style="background-color: green;"><strong></strong></td>
 
-    <!-- Corrected: Display sum of right-side means -->
-    <td class="mean" style="background-color: green;">
-        <strong>{{ number_format($sumOfRowMeans, 1) }}</strong>
-    </td>
-</tr>
+                    <!-- Corrected: Display sum of right-side means -->
+                    <td class="mean" style="background-color: green;">
+                        <strong>{{ number_format($sumOfRowMeans, 1) }}</strong>
+                    </td>
+                </tr>
 
 
                 <!-- Column Mean Row -->
@@ -194,11 +194,11 @@
                     <td colspan="{{ count($columnTotals) + 2 }}">Very Satisfactory</td>
                 </tr>
                 <tr>
-                    <td colspan="7">2.51 - 3.40</td>
+                    <td colspan="7">2.61 - 3.40</td>
                     <td colspan="{{ count($columnTotals) + 2 }}">Satisfactory</td>
                 </tr>
                 <tr>
-                    <td colspan="7">1.81 - 2.50</td>
+                    <td colspan="7">1.81 - 2.60</td>
                     <td colspan="{{ count($columnTotals) + 2 }}">Poor</td>
                 </tr>
                 <tr>

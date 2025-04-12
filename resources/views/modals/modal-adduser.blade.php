@@ -57,7 +57,7 @@
                                     @if(Auth::user()->role == 'Administrator')
                                         <option disabled selected> --Select-- </option>
                                         @foreach ($office as $dataoffice)
-                                            <option value="{{ $dataoffice->office_abbr }}">{{ $dataoffice->office_name }}</option>
+                                            <option value="{{ $dataoffice->office_name }}">{{ $dataoffice->office_name }}</option>
                                         @endforeach
                                     @else
                                     @endif

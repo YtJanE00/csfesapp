@@ -6,6 +6,9 @@
 	<title></title>
 
 	<style>
+		body {
+			font-size: 10pt !important;
+		}
 		.details-sm{
 			font-family: Arial, Helvetica, sans-serif;
 			font-size: 10pt;
@@ -21,7 +24,7 @@
 		.styled-table th,
 		.styled-table td {
 		    border: 1px solid black;
-		    padding: 5px;
+		    padding: 1px;
 		    text-align: left;
 		}
 
@@ -33,7 +36,7 @@
 </head>
 <body>
 	<div align="center" style="margin-top: -20px !important;">
-		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="99%">
+		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="85%">
 	</div>
 
 	<div>
@@ -154,13 +157,13 @@
 			</div>
 		</div>
 
-		<div class="details-sm" style="margin-left: 50px !important;">
-			<span style="margin-left: 50px !important;">Signature: ________________________________&nbsp;&nbsp; Date:____________________________</span>
+			<div class="details-sm" style="margin-left: 50px !important;">
+				<span style="margin-left: 50px !important;">Signature: ________________________________&nbsp;&nbsp; Date:____________________________</span>
+			</div>
 		</div>
- 	</div>
 
 	 <div style="position: fixed; bottom: -30px; left: 0; width: 100%; text-align: center; margin-bottom: 5px;">
-		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="80%">
+		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="75%">
 	</div>
 </body>
 </html>

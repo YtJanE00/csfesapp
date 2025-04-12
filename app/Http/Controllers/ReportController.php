@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use PDF;
@@ -25,14 +26,15 @@ class ReportController extends Controller
 
     public function reportViewSurvey($id)
     {
-        $reportformtitleID = TrainingTitle::find($id);
+        $trainingID = decrypt($id);
+        $reportformtitleID = TrainingTitle::find($trainingID);
 
         $reportformtitle = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
-                        ->where('form_survey.title_id', $id)
-                        ->select('form_survey.*', 'training_title.*', 'form_survey.id as fsid')
+                        ->where('form_survey.title_id', $trainingID)
+                        ->select('form_survey.*', 'training_title.*', 'form_survey.id as fsid', 'form_survey.office as fsoff')
                         ->get();
                         
-        $getTitleID =TrainingQuestion::where('title_id', $id)->get();
+        $getTitleID =TrainingQuestion::where('title_id', $trainingID)->get();
 
         return view('reports.listreports_view', compact('reportformtitleID', 'reportformtitle', 'getTitleID'));
     }
@@ -76,6 +78,7 @@ class ReportController extends Controller
 
         $surveyRatings = FormSurvey::join('training_title', 'form_survey.title_id', '=', 'training_title.id')
                         ->where('form_survey.id', $id)
+                        ->select('form_survey.*', 'training_title.*', 'form_survey.office as fsoff')
                         ->get();
 
         $formtitle = TrainingTitle::join('training_question', 'training_title.id', '=', 'training_question.title_id')
@@ -88,7 +91,7 @@ class ReportController extends Controller
             'surveyRatings' => $surveyRatings
         ];
 
-        $pdf = PDF::loadView('reports.surveyratedform', $data)->setPaper('Legal', 'portrait');
+        $pdf = PDF::loadView('reports.surveyratedform', $data)->setPaper('[0, 0, 612, 792]', 'portrait');
         return $pdf->stream();
     }
 

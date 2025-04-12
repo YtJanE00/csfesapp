@@ -129,7 +129,7 @@ class FormsController extends Controller
             'formtitle' => $formtitle, 
         ];
 
-        $pdf = PDF::loadView('forms.pdf.surveyform', $data)->setPaper('Legal', 'portrait');
+        $pdf = PDF::loadView('forms.pdf.surveyform', $data)->setPaper([0, 0, 612, 792], 'portrait');
         return $pdf->stream();
     }
 
