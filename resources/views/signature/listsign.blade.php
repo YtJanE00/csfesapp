@@ -49,10 +49,9 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example1"class="table table-hover">
+                                <table id="signatoryTable"class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Role</th>
                                             <th>Office</th>
@@ -60,7 +59,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php $no =1; @endphp
+                                        {{-- @php $no =1; @endphp
                                         @foreach($signatories as $datasignatories)
 
                                         <tr>
@@ -73,7 +72,7 @@
                                                 <i class="fas fa-pen"></i>
                                             </a>
 
-                                            <form action="" method="POST" style="display:inline;">
+                                            <form action="{{ route('signatories.destroy', $datasignatories->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete">
@@ -83,7 +82,7 @@
                                         </td>
 
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -95,5 +94,75 @@
     </div>
 </div>
 
+<div class="modal fade" id="editSignModal" tabindex="-1" role="dialog" aria-labelledby="editSignModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSignModalLabel">Edit Signatory</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editSignForm">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="editSignId">
+                    <div class="form-group">
+                        <label for="editSignLname">Last name</label>
+                        <input type="text" class="form-control" id="editSignLname" name="lname">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSignFname">First name</label>
+                        <input type="text" class="form-control" id="editSignFname" name="fname">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSignMname">Middle name</label>
+                        <input type="text" class="form-control" id="editSignMname" name="mname">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSignRole">Role</label>
+                        <select class="form-control form-control-sm" name="role" id="editSignRole">
+                            <option disabled selected>--Select--</option>
+                            <option value="Dean">Dean</option>
+                            <option value="Director, Extension and Community Services">Director, Extension and Community Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSignRank">Rank</label>
+                        <input type="text" class="form-control" id="editSignRank" name="rank">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSignCampus">Campus</label>
+                        <select class="form-control form-control-sm" name="campus" id="editSignCampus">
+                            <option disabled selected> --Select-- </option>
+                            <option value="MC">Main</option>
+                            <option value="VC">Victorias</option>
+                            <option value="SCC">San Carlos</option>
+                            <option value="HC">Hinigaran</option>
+                            <option value="MP">Moises Padilla</option>
+                            <option value="IC">Ilog</option>
+                            <option value="CA">Candoni</option>
+                            <option value="CC">Cauayan</option>
+                            <option value="SC">Sipalay</option>
+                            <option value="HinC">Hinobaan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @include('modals.modal-addsign')
+
+<script>
+    var signatoryReadRoute = "{{ route('getsignatoryRead') }}";
+    var signatoryCreateRoute = "{{ route('signCreate') }}";
+    var signatureUpdateRoute = "{{ route('signatureUpdate', ['id' => ':id']) }}";
+    var signatureDeleteRoute = "{{ route('signatureDelete', ['id' => ':id']) }}";
+</script>
+
 @endsection

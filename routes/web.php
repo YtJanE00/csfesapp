@@ -76,6 +76,10 @@ Route::group(['middleware'=>['login_auth']], function(){
     Route::prefix('sign')->group(function () {
         Route::get('/list/people', [SignatureController::class, 'signRead'])->name('signRead');
         Route::post('/list/people/add', [SignatureController::class, 'signCreate'])->name('signCreate');
+        Route::get('/list/people/fetch', [SignatureController::class, 'getsignatoryRead'])->name('getsignatoryRead');
+        Route::post('/list/people/update', [SignatureController::class, 'signatureUpdate'])->name('signatureUpdate');
+        Route::post('/list/people/signatories/delete/{id}', [SignatureController::class, 'signatureDelete'])->name('signatureDelete');
+
     });
 
     Route::get('/logout', [MasterController::class, 'logout'])->name('logout');

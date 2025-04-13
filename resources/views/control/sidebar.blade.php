@@ -21,7 +21,7 @@
                 @endif
             @endauth
         </a>
-        <span style="font-size: 10pt; color: #5e5e5e;">
+        <span style="font-size: 9pt; color: #5e5e5e;">
             <i class="fa fa-circle text-success" style="font-size: 8pt"></i>
             @auth('web')
                 @if(in_array(Auth::guard('web')->user()->role, ['Administrator', 'User']))

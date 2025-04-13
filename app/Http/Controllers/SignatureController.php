@@ -25,6 +25,13 @@ class SignatureController extends Controller
         return view('signature.listsign', compact('office', 'signatories'));
     }
 
+    public function getsignatoryRead() 
+    {
+        $data = Signatories::orderBy('id', 'ASC')->get();
+
+        return response()->json(['data' => $data]);
+    }
+
     public function signCreate(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -46,11 +53,58 @@ class SignatureController extends Controller
                     'deptID' => $request->input('deptID'),
                     'campus' => $request->input('campus'),
                     'remember_token' => Str::random(60),             
-                ]);      
-                return redirect()->route('signRead')->with('success', 'Signatory Saved Successfully');             
+                ]);    
+                return response()->json(['success' => true, 'message' => 'Signatory Saved Successfully'], 200);         
             } catch (\Exception $e) {
-                return redirect()->route('signRead')->with('error', 'Failed to Save Signatory');
+                return response()->json(['error' => true, 'message' => 'Failed to Save Signatory'], 404);
             }
         }
+    }
+
+    public function signatureUpdate(Request $request) 
+    {
+        $request->validate([
+            'fname' => 'required',
+            'mname' => 'required',
+            'lname' => 'required',
+            'role' => 'required',
+        ]);
+
+        try {
+            $lName = $request->input('lname'); 
+            $fName = $request->input('fname'); 
+            $mName = $request->input('mname'); 
+
+            $existingSign = Signatories::where('lname', $lName)
+                        ->where('fname', $fName)
+                        ->where('mname', $mName)
+                        ->where('id', '!=', $request->input('id'))
+                        ->first();
+
+            if ($existingSign) {
+                return response()->json(['error' => true, 'message' => 'Signatory already exists'], 404);
+            }
+
+            $sig = Signatories::findOrFail($request->input('id'));
+            $sig->update([
+                'fname' => $request->input('fname'),
+                'mname' => $request->input('mname'),
+                'lname' => $request->input('lname'),
+                'role' => $request->input('role'),
+                'rank' => $request->input('rank'),   
+                'campus' => $request->input('campus'),
+        ]);
+            return response()->json(['success' => true, 'message' => 'Signatory update successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => 'Failed to Update Signatory'], 404);
+        }
+    }
+
+    public function signatureDelete($id) 
+    {
+        $sig = Signatories::find($id);
+        $sig->delete();
+
+        return response()->json(['success'=> true, 'message'=>'Deleted Successfully',]);
     }
 }

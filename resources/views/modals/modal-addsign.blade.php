@@ -7,7 +7,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action= "{{ route('signCreate') }}" method="post">
+            <form action= "{{ route('signCreate') }}" method="post" id="addsign">
                 @csrf
 
                 <div class="modal-body">
