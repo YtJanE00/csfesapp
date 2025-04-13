@@ -290,7 +290,7 @@
                 {{ strtoupper($dean) }}
             </span><br>
             <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
-                {{ strtoupper($deanpos) }}, {{ $deandeptFormatted  }}
+                {{ $deanpos }}, {{ $deandeptFormatted  }}
             </span>
 		</div>
 
