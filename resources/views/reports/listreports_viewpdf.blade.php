@@ -183,7 +183,7 @@
 
                     <!-- Corrected: Display sum of right-side means -->
                     <td class="mean" style="background-color: green;">
-                        <strong>{{ number_format($grandTotal / $totalRowCount, 2) }}</strong>
+                        <strong>{{ number_format($rowMean / $totalRowCount, 2) }}</strong>
                     </td>
                 </tr>
 
@@ -256,7 +256,8 @@
         @php
             $coordinator = Auth::guard('web')->user()->fname . ' ' . Auth::guard('web')->user()->mname.'.' .' '.  Auth::guard('web')->user()->lname;
 
-            $dean = $coordinatordean->first()->sfname .' '. $coordinatordean->first()->smname .'.' .' '. $coordinatordean->first()->slname.',' .' '. $coordinatordean->first()->srank;
+            $dean = $coordinatordean->first()->sfname .' '. $coordinatordean->first()->smname .'.' .' '. $coordinatordean->first()->slname;
+            $rank = $coordinatordean->first()->srank;
 
             $deanpos = $coordinatordean->first()->srole;
             $deandept = $coordinatordean->first()->sdept;
@@ -286,11 +287,11 @@
 			Noted by: </p>
 
 		<div class="details-sm" style="margin-left: 50px !important;">
-            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold; text-transform: uppercase">
-                {{ strtoupper($dean) }}
+            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold">
+                {{ strtoupper($dean) }}, {{ $rank }} 
             </span><br>
             <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
-                {{ $deanpos }}, {{ $deandeptFormatted  }}
+                {{ strtoupper($deanpos) }}, {{ $deandeptFormatted  }}
             </span>
 		</div>
 
