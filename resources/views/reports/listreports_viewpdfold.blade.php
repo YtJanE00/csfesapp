@@ -6,10 +6,6 @@
     <title>Survey Report</title>
 
     <style>
-        body {
-            font-size: 10pt !important;
-            font-family: Arial, Helvetica, sans-serif;
-        }
         .styled-table {
             margin-top: 2rem;
             border-collapse: collapse;
@@ -63,7 +59,7 @@
 </head>
 <body>
     <div align="center" style="margin-top: -20px !important;">
-        <img src="{{ public_path('style/img/resultheader.png') }}" width="100%" height="140px">
+        <img src="{{ public_path('style/img/resultheader.png') }}" width="100%" height="90px">
     </div>
 
     <div class="parent-div">
@@ -154,97 +150,60 @@
                     @php $row++; @endphp
                 @endforeach
 
-                @php
-                    // Compute final mean
-                    $finalMean = number_format($rowMean / $totalRowCount, 2);
-
-                    // Determine the interpretation
-                    if ($finalMean >= 4.21) {
-                        $interpretation = "Outstanding";
-                    } elseif ($finalMean >= 3.41) {
-                        $interpretation = "Very Satisfactory";
-                    } elseif ($finalMean >= 2.51) {
-                        $interpretation = "Satisfactory";
-                    } elseif ($finalMean >= 1.81) {
-                        $interpretation = "Poor";
-                    } else {
-                        $interpretation = "Needs Improvement";
-                    }
-
-                @endphp
-
                <!-- Total Row -->
                 <tr class="total" style="background-color: green;">
-                    <td style="background-color: green;"><strong></strong></td>
+                    <td style="background-color: white;"><strong></strong></td>
                     @foreach ($columnTotals as $total)
                         <td><strong>{{ $total }}</strong></td>
                     @endforeach
-                    <td style="background-color: green;"><strong>{{ number_format($grandTotal) }}</strong></td>
+                    <td style="background-color: green;"><strong></strong></td>
 
                     <!-- Corrected: Display sum of right-side means -->
                     <td class="mean" style="background-color: green;">
-                        <strong>{{ number_format($finalMean, 2) }}</strong>
+                        <strong>{{ number_format($sumOfRowMeans, 1) }}</strong>
                     </td>
                 </tr>
 
 
                 <!-- Column Mean Row -->
                 <tr class="mean">
-                    <td style="background-color: yellow;"><strong></strong></td>
+                    <td style="background-color: white;"><strong></strong></td>
                     @php
                         $sumOfColumnMeans = 0;
                         foreach ($columnTotals as $index => $total) {
                             $mean = $columnCounts[$index] > 0 ? $total / $columnCounts[$index] : 0;
                             $sumOfColumnMeans += $mean;
                     @endphp
-                        <td style="background-color: yellow"><strong></strong></td>
+                        <td style="background-color: yellow"><strong>{{ number_format($mean, 1) }}</strong></td>
                     @php } @endphp
 
                     <td class="mean" style="background-color: yellow;"><strong></strong></td>
-                    <td class="mean" style="background-color: yellow"><strong>{{ $interpretation }}</strong></td>
+                    <td class="mean" style="background-color: yellow"><strong>{{ number_format($sumOfRowMeans / $totalRowCount, 1) }}</strong></td>
                 </tr>
                   <!-- Rating Interpretation Row -->
                 <tr>
-                    <th colspan="3" style="background-color: white;">Rating Range</th>
-                    <th colspan="4" style="background-color: white;">Interpretation</th>
-                    <th colspan="3" style="background-color: white;">Frequency</th>
-                    <th colspan="3" style="background-color: white;">Percentage</th>
+                    <th colspan="7" style="background-color: white;">Rating Range</th>
+                    <th colspan="{{ count($columnTotals) + 2 }}" style="background-color: white;">Interpretation</th>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">4.21 - 5.00</td>
-                    <td style="padding: 1px" colspan="4">Outstanding</td>
-                    <td style="padding: 1px" colspan="3">{{ $totalRowCount }}</td>
-                    <td style="padding: 1px" colspan="3">100%</td>
+                    <td colspan="7">4.21 - 5.00</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Outstanding</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">3.41 - 4.20</td>
-                    <td style="padding: 1px" colspan="4">Very Satisfactory</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">3.41 - 4.20</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Very Satisfactory</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">2.61 - 3.40</td>
-                    <td style="padding: 1px" colspan="4">Satisfactory</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">2.61 - 3.40</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Satisfactory</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">1.81 - 2.60</td>
-                    <td style="padding: 1px" colspan="4">Poor</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
+                    <td colspan="7">1.81 - 2.60</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Poor</td>
                 </tr>
                 <tr>
-                    <td style="padding: 1px" colspan="3">1.00 - 1.80</td>
-                    <td style="padding: 1px" colspan="4">Needs Improvement</td>
-                    <td style="padding: 1px" colspan="3"></td>
-                    <td style="padding: 1px" colspan="3"></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px" colspan="3"><b>Total</b></td>
-                    <td style="padding: 1px" colspan="4"></td>
-                    <td style="padding: 1px" colspan="3"><b>{{ $totalRowCount }}</b></td>
-                    <td style="padding: 1px" colspan="3"><b>100%</b></td>
+                    <td colspan="7">1.00 - 1.80</td>
+                    <td colspan="{{ count($columnTotals) + 2 }}">Needs Improvement</td>
                 </tr>
             </tbody>
         </table>
@@ -252,63 +211,26 @@
         <br><br>
     </div>
 
-    <div>
-        @php
-            $coordinator = Auth::guard('web')->user()->fname . ' ' . Auth::guard('web')->user()->mname.'.' .' '.  Auth::guard('web')->user()->lname;
+    @php
+        // Compute final mean
+        $finalMean = ($totalRowCount > 0) ? $sumOfRowMeans / $totalRowCount : 0;
 
-            $dean = $coordinatordean->first()->sfname .' '. $coordinatordean->first()->smname .'.' .' '. $coordinatordean->first()->slname;
-            $rank = $coordinatordean->first()->srank;
+        // Determine the interpretation
+        if ($finalMean >= 4.21) {
+            $interpretation = "Outstanding";
+        } elseif ($finalMean >= 3.41) {
+            $interpretation = "Very Satisfactory";
+        } elseif ($finalMean >= 2.51) {
+            $interpretation = "Satisfactory";
+        } elseif ($finalMean >= 1.81) {
+            $interpretation = "Poor";
+        } else {
+            $interpretation = "Needs Improvement";
+        }
+    @endphp
 
-            $deanpos = $coordinatordean->first()->srole;
-            $deandept = $coordinatordean->first()->sdept;
-            $deandeptFormatted = ucwords(strtolower($deandept), " \t\r\n\f\v");
-            $deandeptFormatted = preg_replace('/\bOf\b/i', 'of', $deandeptFormatted);
-
-            $sigdirector = $director->first()->dfname .' '. $director->first()->dmname .'.' .' '. $director->first()->dlname;
-            $sigdirectorrank = $director->first()->drank;
-            $sigdirectorrole = $director->first()->drole;
-        @endphp
-        
-        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
-			Prepared by: </p>
-
-		<div class="details-sm" style="margin-left: 50px !important;">
-            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold; text-transform: uppercase">
-                {{ strtoupper($coordinator) }}
-            </span><br>
-            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important;">
-                {{ $coordinatorposition }}, Extension Coordinator
-            </span>
-		</div>
-
-        <br>
-
-        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
-			Noted by: </p>
-
-		<div class="details-sm" style="margin-left: 50px !important;">
-            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold">
-                {{ strtoupper($dean) }}, {{ $rank }} 
-            </span><br>
-            <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
-                {{ strtoupper($deanpos) }}, {{ $deandeptFormatted  }}
-            </span>
-		</div>
-
-        <br>
-
-        <p class="details-sm" style="padding-left: 0px !important; margin-top: 5px;">
-			Approved by: </p>
-
-		<div class="details-sm" style="margin-left: 50px !important;">
-            <span style="display: inline-block; width: 190px; vertical-align: top; margin-left: 50px !important; font-weight: bold;">
-                {{ strtoupper($sigdirector) }}, {{ $sigdirectorrank }}
-            </span><br>
-            <span style="display: inline-block; width: 290px; vertical-align: top; margin-left: 50px !important;">
-                {{ $sigdirectorrole }}
-            </span>
-		</div>
-    </div>
+    <p style="color: black;"><strong>Mean = </strong> {{ number_format($finalMean, 2) }} ,  {{ $interpretation }}</p>
+  
 
 </body>
 </html>

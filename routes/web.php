@@ -10,6 +10,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SignatureController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +71,15 @@ Route::group(['middleware'=>['login_auth']], function(){
         Route::get('/list/evaluation/view/{id}', [ReportController::class, 'reportViewSurvey'])->name('reportViewSurvey');
         Route::get('/list/evaluation/view/result/pdf/{id}', [ReportController::class, 'PDFreportViewSurveyresult'])->name('PDFreportViewSurveyresult');
         Route::get('list/evaluation/view/result/rated/pdf/{id}', [ReportController::class, 'PDFSurveyRatedTemplate'])->name('PDFSurveyRatedTemplate');
+    });
+
+    Route::prefix('sign')->group(function () {
+        Route::get('/list/people', [SignatureController::class, 'signRead'])->name('signRead');
+        Route::post('/list/people/add', [SignatureController::class, 'signCreate'])->name('signCreate');
+        Route::get('/list/people/fetch', [SignatureController::class, 'getsignatoryRead'])->name('getsignatoryRead');
+        Route::post('/list/people/update', [SignatureController::class, 'signatureUpdate'])->name('signatureUpdate');
+        Route::post('/list/people/signatories/delete/{id}', [SignatureController::class, 'signatureDelete'])->name('signatureDelete');
+
     });
 
     Route::get('/logout', [MasterController::class, 'logout'])->name('logout');

@@ -63,7 +63,7 @@
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $datareportformtitle->title }}</td>
                                                         <td>{{ $datareportformtitle->name }}</td>
-                                                        <td>{{ $datareportformtitle->office }}</td>
+                                                        <td>{{ $datareportformtitle->fsoff }}</td>
                                                         <td>{{ $datareportformtitle->contact_information }}</td>
                                                         <td>{{ $datareportformtitle->feedback }}</td>
                                                         <td>{{ $datareportformtitle->feedback2 }}</td>

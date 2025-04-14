@@ -91,6 +91,8 @@
     </div>
 </div>
 
+<!-- Button that triggers modal -->
+
 <style>
     .calendar-header {
         display: flex;

@@ -58,7 +58,7 @@
                                             <td>{{ $datareport->training_year }}</td>
                                             <td>{{ $datareport->training_venue }}</td>
                                             <td>
-                                                <a href="{{ route('reportViewSurvey', ['id' => $datareport->id]) }}" class="btn btn-outline-success btn-sm">
+                                                <a href="{{ route('reportViewSurvey', encrypt($datareport->id)) }}" class="btn btn-outline-success btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             </td>

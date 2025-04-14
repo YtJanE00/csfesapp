@@ -6,17 +6,25 @@
 	<title></title>
 
 	<style>
+		body {
+			font-size: 10pt !important;
+		}
+		.details-sm{
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+		}
 		.styled-table {
 			padding-left: 50px;
-			padding-right: 50px;
+			padding-right: 20px;
 		    border-collapse: collapse;
+			font-family: Arial, Helvetica, sans-serif;
 		    width: 100%;
 		}
 
 		.styled-table th,
 		.styled-table td {
 		    border: 1px solid black;
-		    padding: 8px;
+		    padding: 1px;
 		    text-align: left;
 		}
 
@@ -28,36 +36,58 @@
 </head>
 <body>
 	<div align="center" style="margin-top: -20px !important;">
-		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="99%">
+		<img src="{{ public_path('style/img/surveyheader2.png') }}" width="85%">
 	</div>
 
 	<div>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
+		<p class="details-sm" style="padding-left: 50px !important;">
 			To help us improve our future trainings and activities, please spare us a moment to answer this survey.
 		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Training/Workshop Title: <u>{{ $formtitleID->title }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Office handling the training: <u>{{ $formtitleID->office }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-			Speaker/s: <u>{{ $formtitleID->speaker }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-    	Date: <u>{{ $formtitleID->training_month }} {{ $formtitleID->training_day }}, {{ $formtitleID->training_year }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px;">
-			Venue: <u>{{ $formtitleID->training_venue }}</u>
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: -10px; font-weight: bold;">
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 170px; vertical-align: top; padding-left: 50px;">Training/Workshop Title:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 490px; margin-left: -20px">
+				<span>{{ $formtitleID->title }}</span>
+			</div>
+		</div>
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 185px; vertical-align: top; padding-left: 50px;">Office handling the training:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 470px; margin-left: -20px">
+				<span>{{ $formtitleID->office }}</span>
+			</div>
+		</div>
+
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 90px; vertical-align: top; padding-left: 50px;">Speaker/s :</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 470px; margin-left: -20px">
+				<span>{{ $formtitleID->speaker }}</span>
+			</div>
+		</div>
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 50px; vertical-align: top; padding-left: 50px;">Date:</span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 510px; margin-left: -20px">
+				<span>{{ $formtitleID->training_month }} {{ $formtitleID->training_day }}, {{ $formtitleID->training_year }}</span>
+			</div>
+		</div>
+
+		<div class="details-sm" style="margin-top: 5px;">
+			<span style="display: inline-block; width: 60px; vertical-align: top; padding-left: 50px;">Venue: </span>
+			<div style="display: inline-block; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 510px; margin-left: -20px">
+				<span>{{ $formtitleID->training_venue }}</span>
+			</div>
+		</div>
+
+		<p class="details-sm" style="padding-left: 50px !important; margin-top: -10px; font-weight: bold; margin-top: 10px">
 			Please evaluate the following items by encircling the rating values following the legend below:
 		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 70px !important; ">
-			(1)&nbsp;&nbsp;Poor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            (2)&nbsp;&nbsp;Unsatisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            (3)&nbsp;&nbsp;Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            (4)&nbsp;&nbsp;Very Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<p  class="details-sm" style="padding-left: 70px !important; ">
+			(1)&nbsp;&nbsp;Poor &nbsp;&nbsp;&nbsp;&nbsp;
+            (2)&nbsp;&nbsp;Unsatisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            (3)&nbsp;&nbsp;Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            (4)&nbsp;&nbsp;Very Satisfactory &nbsp;&nbsp;&nbsp;&nbsp;
             (5)&nbsp;&nbsp;Outstanding
 		</p>
 	</div>
@@ -66,8 +96,8 @@
 		<table class="styled-table">
 			<thead>
 				<tr>
-					<th><strong> Areas for Evaluation</strong></th>
-					<th>Rate</th>
+					<th><strong><center>Areas for Evaluation</center></strong></th>
+					<th><center>Rate</center></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -89,33 +119,51 @@
 	</div>
 
 	<div>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
+		<br>
+		<p class="details-sm" style="padding-left: 50px !important;">
 			What particular aspect of this training do you think needs improvement?
-Please identify if there is any: ___
+			<br>
+            Please identify if there is any:
+            ________________________________________________________________________________
+			_____________________________________________________________________
 		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Indicate the topics which you would need for future trainings or workshops. ___
+		<p class="details-sm" style="padding-left: 50px !important;">
+			Indicate the topics which you would need for future trainings or workshops.
+			________________________________________________________________________________
+			____________________________________________________________________________
 		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important; margin-top: 5px; font-weight: bold;">
+		<br>
+		<p class="details-sm" style="padding-left: 50px !important; margin-top: 5px; font-weight: bold;">
 			Contact Information: </p>
 
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Name: 
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Office:
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Contact Information (Landline/CP/Email Address):
-		</p>
-		<p style="font-family: Arial; font-size: 10pt; padding-left: 50px !important;">
-			Signature: _____________________&nbsp;&nbsp; Date:_____________________
-            
-		</p>
- 	</div>
+		<div class="details-sm" style="margin-left: 50px !important;">
+			<span style="display: inline-block; width: 50px; vertical-align: top; margin-left: 50px !important;">Name:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 560px;">
+				<span>&nbsp;</span>
+			</div>
+		</div>
 
-	<div style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; margin-bottom: 10px;">
-		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="60%">
+		<div class="details-sm" style="margin-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 50px; vertical-align: top; margin-left: 50px !important;">Office:</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 560px;">
+				<span>&nbsp;</span>
+			</div>
+		</div>
+
+		<div class="details-sm" style="margin-left: 50px !important; margin-top: 2px">
+			<span style="display: inline-block; width: 300px; vertical-align: top; margin-left: 50px !important;">Contact Information (Landline/Cp/Email Address):</span>
+			<div style="display: inline-block; margin-left: -5px; vertical-align: top; text-align: left; border-bottom: 1px solid black; width: 280px;">
+				<span>&nbsp;</span>
+			</div>
+		</div>
+
+			<div class="details-sm" style="margin-left: 50px !important;">
+				<span style="margin-left: 50px !important;">Signature: ________________________________&nbsp;&nbsp; Date:____________________________</span>
+			</div>
+		</div>
+
+	 <div style="position: fixed; bottom: -30px; left: 0; width: 100%; text-align: center; margin-bottom: 5px;">
+		<img src="{{ public_path('style/img/surveyfooter2.png') }}" width="75%">
 	</div>
 </body>
 </html>
