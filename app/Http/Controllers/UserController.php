@@ -85,6 +85,25 @@ class UserController extends Controller
         return redirect()->route('userRead')->with('success', 'User updated successfully.');
     }
 
+    public function updatepass(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'password' => 'required|string|max:255',
+        ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update user details
+        $user->update([
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        // Redirect back with success message
+        return redirect()->route('userRead')->with('success', 'User updated successfully.');
+    }
+
     // Delete user
     public function destroy($id)
     {

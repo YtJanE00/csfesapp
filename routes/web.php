@@ -64,6 +64,7 @@ Route::group(['middleware'=>['login_auth']], function(){
         Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
         Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::put('/user/update/{id}/pass', [UserController::class, 'updatepass'])->name('updatepass');
     });
 
     Route::prefix('reports')->group(function () {

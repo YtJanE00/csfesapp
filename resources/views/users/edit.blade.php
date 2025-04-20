@@ -22,39 +22,72 @@
     </div>
    
     <div class="container">
-        <div class="card card-success">
-            <div class="card-header">
-                <h3 class="card-title">Edit User Details</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Edit user
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('user.update', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="fname">First Name</label>
+                                    <input type="text" class="form-control" id="fname" name="fname" value="{{ old('fname', $user->fname) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mname">Middle Name</label>
+                                    <input type="text" class="form-control" id="mname" name="mname" value="{{ old('mname', $user->mname) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" name="lname" value="{{ old('lname', $user->lname) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="User" {{ $user->role == 'User' ? 'selected' : '' }}>User</option>
+                                        <option value="Administrator" {{ $user->role == 'Administrator' ? 'selected' : '' }}>Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">Update</button>
+                                <a href="{{ route('userRead') }}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <form action="{{ route('user.update', $user->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="fname">First Name</label>
-                        <input type="text" class="form-control" id="fname" name="fname" value="{{ old('fname', $user->fname) }}" required>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Edit user
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mname">Middle Name</label>
-                        <input type="text" class="form-control" id="mname" name="mname" value="{{ old('mname', $user->mname) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lname">Last Name</label>
-                        <input type="text" class="form-control" id="lname" name="lname" value="{{ old('lname', $user->lname) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Role</label>
-                        <select class="form-control" id="role" name="role" required>
-                            <option value="User" {{ $user->role == 'User' ? 'selected' : '' }}>User</option>
-                            <option value="Administrator" {{ $user->role == 'Administrator' ? 'selected' : '' }}>Admin</option>
-                        </select>
+                    <div class="card-body">
+                        <form action="{{ route('updatepass', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="passw">Change Password</label>
+                                    <input type="text" class="form-control" id="passw" name="password" required>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">Update Password</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-success">Update</button>
-                    <a href="{{ route('userRead') }}" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

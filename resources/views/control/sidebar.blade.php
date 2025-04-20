@@ -60,15 +60,16 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a href="{{ route('signRead') }}" class="nav-link {{ $signActive }}">
+            <i class="nav-icon fas fa-pen"></i>
+            <p>
+                Signatories
+            </p>
+        </a>
+    </li>
+    
     @if(Auth::guard('web')->user()->role == 'Administrator')
-        <li class="nav-item">
-            <a href="{{ route('signRead') }}" class="nav-link {{ $signActive }}">
-                <i class="nav-icon fas fa-pen"></i>
-                <p>
-                    Signatories
-                </p>
-            </a>
-        </li>
         <li class="nav-item">
             <a href="{{ route('userRead') }}" class="nav-link {{ $userActive }}">
                 <i class="nav-icon fas fa-user-gear"></i>

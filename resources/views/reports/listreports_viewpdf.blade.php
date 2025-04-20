@@ -126,7 +126,9 @@
             @endphp
 
             <tbody>
-                @php $row = 1; @endphp
+                @php 
+                    $row = 1; 
+                @endphp
                 @foreach ($getRate as $rate)
                     <tr>
                         <td>{{ $row }}</td>
@@ -156,7 +158,7 @@
 
                 @php
                     // Compute final mean
-                    $finalMean = number_format($rowMean / $totalRowCount, 2);
+                    $finalMean =+ number_format($rowMean, 1);
 
                     // Determine the interpretation
                     if ($finalMean >= 4.21) {
@@ -183,7 +185,7 @@
 
                     <!-- Corrected: Display sum of right-side means -->
                     <td class="mean" style="background-color: green;">
-                        <strong>{{ number_format($finalMean, 2) }}</strong>
+                        <strong>{{ number_format($sumOfRowMeans / $totalRowCount, 2) }}</strong>
                     </td>
                 </tr>
 
