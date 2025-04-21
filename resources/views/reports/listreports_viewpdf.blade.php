@@ -46,7 +46,7 @@
             text-align: center;
             font-size: .7rem;
             border: 1px solid #727171;
-            margin: 1rem 0;
+            padding: -100px;
         }
 
         .total, .mean {
@@ -69,8 +69,16 @@
     <div class="parent-div">
         <div class="pdf-title">
             <div class="title-box">
-                <h1>Title: {{ $pdfreportformtitleID->title }}</h1>
+                <h1 style="margin: 0;">
+                    TITLE: {{ $pdfreportformtitleID->title }}
+                </h1>
+                <h1 style="margin: 5px 0 0 0;">
+                    {{ $pdfreportformtitleID->training_month }} 
+                    {{ $pdfreportformtitleID->training_day }},
+                    {{ $pdfreportformtitleID->training_year }}
+                </h1>
             </div>
+            
         </div>
 
         @php

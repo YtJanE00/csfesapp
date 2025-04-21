@@ -19,7 +19,7 @@
                                     </h3>
 
                                     <div class="timeline-body">
-                                        Web-based Customer Satisfaction Feedback and Evaluation System is an  online web-based platform designed to simplify the collection, analysis, and management of customer feedback of the Extension Trainings to improve service quality and operational efficiency
+                                        Web-based Customer Satisfaction Feedback and Evaluation System is an  online web-based platform designed to simplify the collection, analysis, and management of customer feedback of the Extension Trainings to improve service quality and operational efficiency.
                                     </div>
                                 </div>
                             </div>
